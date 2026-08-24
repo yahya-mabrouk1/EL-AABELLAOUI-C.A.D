@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مولد عقود التعيين العقارية</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --bg: #f8fafc;
+            --border: #cbd5e1;
+        }
+
+        /* ------------------------- */
+        /* تصميم واجهة الإدخال (الشاشة) */
+        /* ------------------------- */
+        @media screen {
+            body {
+                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                background-color: var(--bg);
+                margin: 0;
+                padding: 30px 20px;
+                color: #334155;
+            }
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                background: #ffffff;
+                border-radius: 12px;
+                padding: 35px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+                border-top: 5px solid var(--primary);
+            }
+            h1 { text-align: center; color: var(--primary); font-size: 26px; margin-top: 0; font-weight: 800; }
+            p.desc { text-align: center; color: #64748b; margin-bottom: 30px; font-size: 15px; }
+            .form-section { 
+                border: 1px solid var(--border); 
+                border-radius: 8px; 
+                padding: 20px; 
+                margin-bottom: 20px; 
+                background: #f1f5f9; 
+                transition: all 0.3s ease;
+            }
+            .form-section:hover {
+                border-color: #94a3b8;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            }
+            .form-section h2 { 
+                margin-top: 0; 
+                font-size: 17px; 
+                color: var(--primary); 
+                border-bottom: 2px solid var(--primary); 
+                padding-bottom: 8px; 
+                display: block;
+                margin-bottom: 15px;
+            }
+            .vertical-stack {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .form-group { 
+                display: flex; 
+                flex-direction: column; 
+            }
+            label { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: #475569; }
+            input { 
+                padding: 10px 12px; 
+                border: 1px solid var(--border); 
+                border-radius: 6px; 
+                font-size: 14px; 
+                font-family: inherit;
+                transition: border-color 0.2s, box-shadow 0.2s;
+            }
+            input:focus { 
+                outline: none; 
+                border-color: #3b82f6; 
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            }
+            button { 
+                background: var(--primary); 
+                color: #fff; 
+                border: none; 
+                padding: 16px; 
+                width: 100%; 
+                font-size: 18px; 
+                font-weight: bold; 
+                border-radius: 8px; 
+                cursor: pointer; 
+                margin-top: 15px; 
+                transition: background 0.3s, transform 0.1s;
+                box-shadow: 0 4px 6px rgba(30, 58, 138, 0.2);
+            }
+            button:hover { background: #1e40af; }
+            button:active { transform: translateY(2px); }
+            #pdf-template { display: none; }
+        }
+
+        /* ------------------------- */
+        /* تصميم الطباعة / PDF       */
+        /* ------------------------- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 20mm 20mm;
+            }
+            body {
+                background: white;
+                margin: 0;
+                padding: 0;
+                font-family: 'Times New Roman', Arial, sans-serif;
+                font-size: 13.5pt;
+                color: #0f172a; 
+                line-height: 1.6;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .container { display: none !important; }
+            #pdf-template { display: block !important; width: 100%; }
+
+            .chapter-title { 
+                font-weight: bold; 
+                margin-top: 12px; 
+                color: #1e3a8a; 
+                font-size: 14.5pt;
+                border-bottom: 1.5px solid #1e3a8a;
+                display: inline-block;
+                padding-bottom: 2px;
+            }
+
+            .doc-title { 
+                text-align: center; 
+                font-weight: bold; 
+                font-size: 24pt; 
+                margin-bottom: 20px; 
+                color: #1e3a8a;
+                text-decoration: underline;
+                text-underline-offset: 6px;
+            }
+            
+            .bold { font-weight: bold; }
+            .underline { text-decoration: underline; }
+            .ltr { direction: ltr; display: inline-block; unicode-bidi: embed; }
+            .flex-row { display: flex; justify-content: space-between; align-items: baseline; }
+            ul { margin: 5px 0; padding-right: 25px; list-style-type: disc; }
+            li { margin-bottom: 4px; }
+            .signatures { display: flex; justify-content: space-between; margin-top: 45px; }
+            .sig-box { width: 45%; text-align: center; font-weight: bold; font-size: 14pt;}
+            .text-left { text-align: left; }
+            .indent-conditions { padding-right: 20px; }
+            
+            .party-header {
+                background-color: #f1f5f9;
+                padding: 4px 8px;
+                border-radius: 4px;
+                display: inline-block;
+                border-right: 4px solid #1e3a8a;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>مولد العقود</h1>
+    <p class="desc">تم هيكلة بيانات الطرف الأول لتفادي تداخل اللغتين، مع إضافة قيم افتراضية للشركة قابلة للتعديل.</p>
+
+    <form id="dataForm">
+        <!-- 1. بيانات الطرف الأول -->
+        <div class="form-section">
+            <h2>1. بيانات الطرف الأول (الشركة)</h2>
+            <div class="vertical-stack">
+                <div class="form-group"><label>اسم الشركة</label><input type="text" id="i_compName" value="EL AABELLAOUI C.A.D" dir="ltr" style="text-align: right;"></div>
+                <div class="form-group"><label>مقر الشركة (المدينة/العنوان)</label><input type="text" id="i_compAddr" value="GARAGE AU SOUSS N°36 HAY EL YOUSSOUFIA TIZNIT" dir="ltr" style="text-align: right;"></div>
+                <div class="form-group"><label>اسم المشروع</label><input type="text" id="i_projName" value="إقامة البشير"></div>
+                <div class="form-group"><label>مكان المشروع / العنوان</label><input type="text" id="i_compBranch" value="ZAWIYA TENIN AGLOU TIZNIT" dir="ltr" style="text-align: right;"></div>
+                <div class="form-group"><label>ممثل الشركة</label><input type="text" id="i_compRep" value="عبد الحفيظ العبلاوي"></div>
+            </div>
+        </div>
+
+        <!-- 2. بيانات الطرف الثاني -->
+        <div class="form-section">
+            <h2>2. بيانات الطرف الثاني (المشتري)</h2>
+            <div class="vertical-stack">
+                <div class="form-group"><label>الاسم الكامل (بالعربية)</label><input type="text" id="i_buyerNameAr" value=""></div>
+                <div class="form-group"><label>الاسم الكامل (بالفرنسية)</label><input type="text" id="i_buyerNameFr" value="" dir="ltr"></div>
+                <div class="form-group"><label>رقم البطاقة الوطنية</label><input type="text" id="i_buyerCin" value=""></div>
+                <div class="form-group"><label>عنوان السكن</label><input type="text" id="i_buyerAddr" value=""></div>
+                <div class="form-group"><label>رقم الهاتف</label><input type="text" id="i_buyerPhone" value="" dir="ltr"></div>
+            </div>
+        </div>
+
+        <!-- 3. مواصفات العقار -->
+        <div class="form-section">
+            <h2>3. مواصفات العقار</h2>
+            <div class="vertical-stack">
+                <div class="form-group"><label>اسم الإقامة (في الفصل الثاني)</label><input type="text" id="i_residenceName" value="البشير"></div>
+                <div class="form-group"><label>رقم الشقة</label><input type="text" id="i_aptNum" value=""></div>
+                <div class="form-group"><label>المساحة بالأرقام</label><input type="text" id="i_area" value=""></div>
+                <div class="form-group"><label>المساحة بالحروف</label><input type="text" id="i_areaAr" value=""></div>
+                <div class="form-group"><label>الطابق</label><input type="text" id="i_floor" value=""></div>
+                <div class="form-group"><label>عدد الواجهات</label><input type="text" id="i_facades" value=""></div>
+                <div class="form-group"><label>المكونات</label><input type="text" id="i_comp" value=""></div>
+            </div>
+        </div>
+
+        <!-- 4. الشروط المالية والتواريخ -->
+        <div class="form-section">
+            <h2>4. الشروط المالية وتفاصيل التحرير</h2>
+            <div class="vertical-stack">
+                <div class="form-group"><label>الثمن النهائي بالأرقام (درهم)</label><input type="number" id="i_total" value="" oninput="calcBal()"></div>
+                <div class="form-group"><label>الثمن النهائي بالحروف</label><input type="text" id="i_totalAr" value=""></div>
+                
+                <div class="form-group"><label>المبلغ المودع بالأرقام (درهم)</label><input type="number" id="i_dep" value="" oninput="calcBal()"></div>
+                <div class="form-group"><label>المبلغ المودع بالحروف</label><input type="text" id="i_depAr" value=""></div>
+                
+                <div class="form-group">
+                    <label>تفاصيل الإيداع والتحويل (التواريخ، البنك، الخ...)</label>
+                    <input type="text" id="i_transferDetails" value="">
+                </div>
+
+                <div class="form-group"><label>المبلغ المتبقي بالأرقام (درهم)</label><input type="number" id="i_bal" value=""></div>
+                <div class="form-group"><label>المبلغ المتبقي بالحروف</label><input type="text" id="i_balAr" value=""></div>
+                <div class="form-group"><label>تفاصيل طريقة سداد المبلغ المتبقي والآجال</label><input type="text" id="i_paymentDetails" value=""></div>
+                
+                <div class="form-group"><label>مكان التحرير (المدينة)</label><input type="text" id="i_signCity" value="تيزنيت"></div>
+                <div class="form-group"><label>تاريخ التحرير</label><input type="text" id="i_signDate" value=""></div>
+            </div>
+        </div>
+
+        <button type="button" onclick="prepareAndPrint()">توليد وطباعة العقد (PDF)</button>
+    </form>
+</div>
+
+<!-- المحتوى الذي سيتم طباعته -->
+<div id="pdf-template">
+    <div class="doc-title">عقد التعيين</div>
+    
+    <div class="bold">بين الموقعين أسفله:</div>
+    
+    <div class="bold underline party-header" style="margin-top: 8px; margin-bottom: 8px;">الطرف الأول :</div>
+    <div style="padding-right: 15px; margin-bottom: 15px; line-height: 1.8;">
+        <div>&bull; <span class="bold">شركة :</span> <span class="bold ltr" id="o_compName" style="font-family: Arial, sans-serif;"></span></div>
+        <div>&bull; <span class="bold">الكائن مقرها بـ :</span> <span class="bold ltr" id="o_compAddr" style="font-family: Arial, sans-serif;"></span></div>
+        <div>&bull; <span class="bold">المالكة لمشروع <span id="o_projName"></span> الكائنة بـ :</span> <span class="bold ltr" id="o_compBranch" style="font-family: Arial, sans-serif;"></span></div>
+        <div>&bull; <span class="bold">و الممثلة بالسيد :</span> <span class="bold" id="o_compRep"></span></div>
+    </div>
+    
+    <div class="bold text-left" style="margin: 15px 0;">من جهة</div>
+    
+    <div class="bold underline party-header" style="margin-bottom: 8px;">الطرف الثاني:</div>
+    <div style="padding-right: 15px;">
+        <div class="flex-row">
+            <div>&bull; السيد: <span class="bold" id="o_buyerNameAr"></span></div>
+            <div class="bold ltr" style="font-family: Arial, sans-serif;">Nom et Prénom: <span class="bold" id="o_buyerNameFr"></span></div>
+        </div>
+        <div>&bull; بطاقة التعريف الوطنية رقم : <span class="bold" id="o_buyerCin"></span></div>
+        <div>&bull; الساكن بـ : <span class="bold" id="o_buyerAddr"></span>.</div>
+        <div>&bull; الهاتف : <span class="bold ltr" id="o_buyerPhone"></span></div>
+    </div>
+    
+    <div class="bold text-left" style="margin: 15px 0;">باعتباره مشترياً من جهة أخرى</div>
+
+    <div class="bold underline" style="text-align: center; font-size: 15pt; margin-bottom: 10px;">بنـــــــــــــــود العقـــــــــــــــــــــــــــد</div>
+
+    <div class="chapter-title">الفصل الأول: القبول</div>
+    <div style="text-align: justify;">
+        بمقتضى هذا العقد وبكافة الضمانات القانونية، تشهد شركة <span class="bold ltr" id="o_compName2" style="font-family: Arial, sans-serif;"></span> المذكورة أعلاه أنها عينت للطرف الثاني : <span class="bold" id="o_buyerNameAr2"></span> الذي يتوفر على كامل الأهلية القانونية لقبول هذا الاتفاق على أن يستفيد من العقار الذي سيتم تعيينه أدناه كما يشهد الطرف الثاني أنه عرف ما تم الاتفاق عليه وقبله.
+    </div>
+
+    <div class="chapter-title">الفصل الثاني: التعيين</div>
+    <div style="text-align: justify;">
+        الشقة السكنية بكافة مرافقها ومنافعها، الحاملة للرقم <span class="bold" id="o_aptNum"></span> بإقامة "<span class="bold" id="o_residenceName"></span>" البالغة مساحتها <span class="bold" id="o_area"></span> متراً مربعاً تقريباً (<span class="bold" id="o_areaAr"></span>) بالطابق <span class="bold" id="o_floor"></span> ذات <span class="bold" id="o_facades"></span> والمتكونة من <span class="bold" id="o_comp"></span>.
+    </div>
+
+    <div class="chapter-title">الفصل الثالث: الشروط</div>
+    <div style="text-align: justify;">
+        وقع هذا الاتفاق وفق الشروط والمقتضيات التالية والتي يلتزم طرفي هذا العقد بتنفيذها.<br>
+        <div class="indent-conditions">
+            <span class="bold" style="color: #1e3a8a;">الشروط على عاتق الطرف الأول:</span><br>
+            <ul>
+                <li>أن يسلم للمستفيد العقار موضوع الاتفاق خالياً من كل تقييد أو رهن أو حجز وفارغاً من أي محتل.</li>
+            </ul>
+            <span class="bold" style="color: #1e3a8a;">الشروط على عاتق الطرف الثاني:</span><br>
+            <ul>
+                <li>أن يؤدي جميع الضرائب كيفما كان نوعها والمترتبة عليه بعد التسليم النهائي.</li>
+                <li>أن يؤدي المبلغ المتبقي من القيمة النهائية للشقة في الآجال المحددة في هذا العقد.</li>
+                <li>كل تخلف عن أداء الالتزامات المالية وفق الجدولة أدناه يعتبر بمثابة تصريح من الطرف الثاني بفسخ هذا العقد من جانب واحد.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="chapter-title">الفصل الرابع: الثمن</div>
+    <div style="text-align: justify;">
+        تم الاتفاق وقبول هذا العقد مقابل ثمن نهائي قدره <span class="bold" id="o_total"></span> درهم (<span class="bold" id="o_totalAr"></span>) للشقة رقم <span class="bold" id="o_aptNum2"></span> تم إيداع مبلغ قدره <span class="bold" id="o_dep"></span> درهم (<span class="bold" id="o_depAr"></span>) <span class="bold" id="o_transferDetails"></span><br>
+        <ul>
+            <li>الباقي ما قدره <span class="bold" id="o_bal"></span> درهم (<span class="bold" id="o_balAr"></span>) <span class="bold" id="o_paymentDetails"></span>.</li>
+        </ul>
+        في حال عدم الالتزام بإحدى بنود هذا العقد للشركة كامل الصلاحية في اتخاذ القرارات التي تراها مناسبة ومن جهة واحدة ومن دون إخطار أو حكم.<br>
+        <span class="bold" style="background-color: #e2e8f0; padding: 2px 4px;">هذا العقد بمثابة توصيل الحجز.</span><br>
+        <span class="bold">إمضاء</span><br>
+        <span class="bold" style="font-size: 14pt;">حرر بـ <span class="bold" id="o_signCity"></span> بتاريخ: <span class="bold" id="o_signDate"></span>.</span>
+    </div>
+
+    <div class="signatures">
+        <div class="sig-box">
+            <span style="border-bottom: 2px solid #1e3a8a; padding-bottom: 3px;">الطرف الأول:</span><br><br>
+            <span class="bold ltr" id="o_compName3" style="font-family: Arial, sans-serif;"></span>
+        </div>
+        <div class="sig-box">
+            <span style="border-bottom: 2px solid #1e3a8a; padding-bottom: 3px;">الطرف الثاني:</span><br><br>
+            <span id="o_buyerNameAr3"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+    function calcBal() {
+        let total = parseFloat(document.getElementById('i_total').value) || 0;
+        let dep = parseFloat(document.getElementById('i_dep').value) || 0;
+        let bal = total - dep;
+        if (!isNaN(bal) && bal >= 0) {
+            document.getElementById('i_bal').value = bal;
+        }
+    }
+
+    function formatNumber(num) {
+        return Number(num).toLocaleString('en-US', { minimumFractionDigits: 2 }).replace(/,/g, '');
+    }
+
+    function prepareAndPrint() {
+        document.getElementById('o_compName').innerText = document.getElementById('i_compName').value;
+        document.getElementById('o_compName2').innerText = document.getElementById('i_compName').value;
+        document.getElementById('o_compName3').innerText = document.getElementById('i_compName').value;
+        document.getElementById('o_compAddr').innerText = document.getElementById('i_compAddr').value;
+        document.getElementById('o_compBranch').innerText = document.getElementById('i_compBranch').value;
+        document.getElementById('o_projName').innerText = document.getElementById('i_projName').value;
+        document.getElementById('o_compRep').innerText = document.getElementById('i_compRep').value;
+
+        document.getElementById('o_residenceName').innerText = document.getElementById('i_residenceName').value;
+
+        document.getElementById('o_buyerNameAr').innerText = document.getElementById('i_buyerNameAr').value;
+        document.getElementById('o_buyerNameAr2').innerText = document.getElementById('i_buyerNameAr').value;
+        document.getElementById('o_buyerNameAr3').innerText = document.getElementById('i_buyerNameAr').value;
+        document.getElementById('o_buyerNameFr').innerText = document.getElementById('i_buyerNameFr').value;
+        document.getElementById('o_buyerCin').innerText = document.getElementById('i_buyerCin').value;
+        document.getElementById('o_buyerAddr').innerText = document.getElementById('i_buyerAddr').value;
+        document.getElementById('o_buyerPhone').innerText = document.getElementById('i_buyerPhone').value;
+
+        document.getElementById('o_aptNum').innerText = document.getElementById('i_aptNum').value;
+        document.getElementById('o_aptNum2').innerText = document.getElementById('i_aptNum').value;
+        document.getElementById('o_area').innerText = document.getElementById('i_area').value;
+        document.getElementById('o_areaAr').innerText = document.getElementById('i_areaAr').value;
+        document.getElementById('o_floor').innerText = document.getElementById('i_floor').value;
+        document.getElementById('o_facades').innerText = document.getElementById('i_facades').value;
+        document.getElementById('o_comp').innerText = document.getElementById('i_comp').value;
+
+        // الحسابات المباشرة
+        let total = parseFloat(document.getElementById('i_total').value) || 0;
+        let dep = parseFloat(document.getElementById('i_dep').value) || 0;
+        let bal = parseFloat(document.getElementById('i_bal').value) || (total - dep);
+
+        document.getElementById('o_total').innerText = formatNumber(total);
+        document.getElementById('o_dep').innerText = formatNumber(dep);
+        document.getElementById('o_bal').innerText = formatNumber(bal);
+        
+        document.getElementById('o_totalAr').innerText = document.getElementById('i_totalAr').value;
+        document.getElementById('o_depAr').innerText = document.getElementById('i_depAr').value;
+        document.getElementById('o_balAr').innerText = document.getElementById('i_balAr').value;
+
+        document.getElementById('o_transferDetails').innerText = document.getElementById('i_transferDetails').value;
+        document.getElementById('o_paymentDetails').innerText = document.getElementById('i_paymentDetails').value;
+        
+        // ربط مكان وتاريخ التحرير
+        document.getElementById('o_signCity').innerText = document.getElementById('i_signCity').value;
+        document.getElementById('o_signDate').innerText = document.getElementById('i_signDate').value;
+
+        window.print();
+    }
+</script>
+
+</body>
+</html>
