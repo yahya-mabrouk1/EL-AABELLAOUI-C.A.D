@@ -300,8 +300,8 @@
             .preview-modal {
                 position: fixed;
                 inset: 0;
-                background: rgba(15, 23, 42, 0.7);
-                backdrop-filter: blur(4px);
+                background: rgba(15, 23, 42, 0.85);
+                backdrop-filter: blur(6px);
                 z-index: 1500;
                 display: none;
                 overflow-y: auto;
@@ -316,34 +316,114 @@
             .preview-modal-bar {
                 width: 100%;
                 max-width: 210mm;
-                background: #ffffff;
+                background: #1e293b;
+                color: #ffffff;
                 padding: 12px 20px;
                 border-radius: 8px 8px 0 0;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                box-shadow: var(--shadow-md);
-                border-bottom: 2px solid var(--border);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+                position: sticky;
+                top: 0;
+                z-index: 10;
             }
 
             .preview-sheet-wrapper {
-                width: 100%;
-                max-width: 210mm;
+                width: 210mm;
+                min-height: 297mm;
                 background: #ffffff;
-                padding: 20mm;
-                box-shadow: var(--shadow-lg);
-                border-radius: 0 0 8px 8px;
-                margin-bottom: 30px;
+                padding: 15mm 18mm 15mm 18mm;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 2px rgba(0,0,0,0.2);
+                border-radius: 0 0 4px 4px;
                 box-sizing: border-box;
-                font-family: 'Times New Roman', Arial, sans-serif;
-                font-size: 13.5pt;
-                line-height: 1.6;
-                color: #0f172a;
+                margin-bottom: 40px;
+                position: relative;
+            }
+
+            @media screen and (max-width: 840px) {
+                .preview-modal {
+                    padding: 10px 5px;
+                }
+                .preview-modal-bar {
+                    border-radius: 6px 6px 0 0;
+                    padding: 10px 14px;
+                }
+                .preview-sheet-wrapper {
+                    width: 100%;
+                    min-height: auto;
+                    padding: 15mm 12mm;
+                    margin-bottom: 20px;
+                }
             }
 
             #pdf-template {
                 display: none;
             }
+        }
+
+        /* ------------------------------------------- */
+        /* التنسيقات المشتركة للوثيقة (المعاينة والطباعة) */
+        /* ------------------------------------------- */
+        .contract-sheet {
+            font-family: 'Times New Roman', Arial, sans-serif;
+            font-size: 13.2pt;
+            color: #0f172a;
+            line-height: 1.55;
+            direction: rtl;
+            text-align: right;
+            box-sizing: border-box;
+        }
+
+        .contract-sheet .doc-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 23pt;
+            margin-bottom: 15px;
+            color: #1e3a8a;
+            text-decoration: underline;
+            text-underline-offset: 6px;
+        }
+
+        .contract-sheet .party-header {
+            background-color: #f1f5f9;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            border-right: 4px solid #1e3a8a;
+        }
+
+        .contract-sheet .chapter-title {
+            font-weight: bold;
+            margin-top: 10px;
+            color: #1e3a8a;
+            font-size: 14pt;
+            border-bottom: 1.5px solid #1e3a8a;
+            display: inline-block;
+            padding-bottom: 2px;
+        }
+
+        .contract-sheet .bold { font-weight: bold; }
+        .contract-sheet .underline { text-decoration: underline; }
+        .contract-sheet .ltr { direction: ltr; display: inline-block; unicode-bidi: embed; }
+        .contract-sheet .flex-row { display: flex; justify-content: space-between; align-items: baseline; }
+        .contract-sheet ul { margin: 4px 0; padding-right: 22px; list-style-type: disc; }
+        .contract-sheet li { margin-bottom: 3px; }
+        .contract-sheet .text-left { text-align: left; }
+        .contract-sheet .indent-conditions { padding-right: 18px; }
+
+        .contract-sheet .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 35px;
+            page-break-inside: avoid;
+        }
+
+        .contract-sheet .sig-box {
+            width: 45%;
+            text-align: center;
+            font-weight: bold;
+            font-size: 13.5pt;
         }
 
         /* ------------------------- */
@@ -358,10 +438,6 @@
                 background: #ffffff;
                 margin: 0;
                 padding: 0;
-                font-family: 'Times New Roman', Arial, sans-serif;
-                font-size: 13.2pt;
-                color: #0f172a;
-                line-height: 1.55;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
@@ -371,56 +447,6 @@
             #pdf-template {
                 display: block !important;
                 width: 100%;
-            }
-
-            .chapter-title {
-                font-weight: bold;
-                margin-top: 10px;
-                color: #1e3a8a;
-                font-size: 14pt;
-                border-bottom: 1.5px solid #1e3a8a;
-                display: inline-block;
-                padding-bottom: 2px;
-            }
-
-            .doc-title {
-                text-align: center;
-                font-weight: bold;
-                font-size: 23pt;
-                margin-bottom: 15px;
-                color: #1e3a8a;
-                text-decoration: underline;
-                text-underline-offset: 6px;
-            }
-
-            .bold { font-weight: bold; }
-            .underline { text-decoration: underline; }
-            .ltr { direction: ltr; display: inline-block; unicode-bidi: embed; }
-            .flex-row { display: flex; justify-content: space-between; align-items: baseline; }
-            ul { margin: 4px 0; padding-right: 22px; list-style-type: disc; }
-            li { margin-bottom: 3px; }
-
-            .signatures {
-                display: flex;
-                justify-content: space-between;
-                margin-top: 35px;
-                page-break-inside: avoid;
-            }
-            .sig-box {
-                width: 45%;
-                text-align: center;
-                font-weight: bold;
-                font-size: 13.5pt;
-            }
-            .text-left { text-align: left; }
-            .indent-conditions { padding-right: 18px; }
-
-            .party-header {
-                background-color: #f1f5f9;
-                padding: 3px 8px;
-                border-radius: 4px;
-                display: inline-block;
-                border-right: 4px solid #1e3a8a;
             }
         }
     </style>
@@ -656,8 +682,8 @@
 <!-- نافذة المعاينة المباشرة على الشاشة -->
 <div id="previewModal" class="preview-modal" onclick="if(event.target===this) closePreview();">
     <div class="preview-modal-bar">
-        <div style="font-weight:700; color:var(--primary); font-size:15px;">
-            📄 معاينة العقد على ورقة A4 (قبل الطباعة)
+        <div style="font-weight:700; color:#f8fafc; font-size:15px; display:flex; align-items:center; gap:8px;">
+            <span>📄</span> معاينة طبق الأصل لورقة A4 (عقد التعيين)
         </div>
         <div class="toolbar-group">
             <button type="button" class="btn btn-primary" onclick="prepareAndPrint()">
@@ -677,7 +703,7 @@
 <div id="toast" class="toast"></div>
 
 <!-- المحتوى الذي سيتم طباعته (A4 Print Template) -->
-<div id="pdf-template">
+<div id="pdf-template" class="contract-sheet">
     <div class="doc-title">عقد التعيين</div>
     
     <div class="bold">بين الموقعين أسفله:</div>
@@ -998,7 +1024,9 @@
     function openPreview() {
         syncDataToTemplate();
         const templateHtml = document.getElementById('pdf-template').innerHTML;
-        document.getElementById('previewSheet').innerHTML = templateHtml;
+        const previewSheet = document.getElementById('previewSheet');
+        previewSheet.innerHTML = templateHtml;
+        previewSheet.className = 'preview-sheet-wrapper contract-sheet';
         document.getElementById('previewModal').classList.add('active');
         document.body.style.overflow = 'hidden';
     }
