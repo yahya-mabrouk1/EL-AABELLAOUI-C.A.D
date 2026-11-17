@@ -3,12 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مولد عقود التعيين العقارية</title>
+    <title>مولد عقود التعيين العقارية | EL AABELLAOUI C.A.D</title>
     <style>
         :root {
             --primary: #1e3a8a;
+            --primary-dark: #172554;
+            --primary-light: #2563eb;
+            --accent: #0284c7;
+            --success: #16a34a;
+            --danger: #dc2626;
             --bg: #f8fafc;
+            --surface: #ffffff;
             --border: #cbd5e1;
+            --border-focus: #3b82f6;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 25px -3px rgb(0 0 0 / 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         /* ------------------------- */
@@ -16,84 +32,318 @@
         /* ------------------------- */
         @media screen {
             body {
-                font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+                font-family: 'Segoe UI', Tahoma, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
                 background-color: var(--bg);
                 margin: 0;
-                padding: 30px 20px;
-                color: #334155;
+                padding: 25px 15px 60px;
+                color: var(--text);
+                line-height: 1.5;
             }
+
             .container {
-                max-width: 800px;
+                max-width: 900px;
                 margin: 0 auto;
-                background: #ffffff;
-                border-radius: 12px;
-                padding: 35px;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-                border-top: 5px solid var(--primary);
+                background: var(--surface);
+                border-radius: 14px;
+                padding: 30px;
+                box-shadow: var(--shadow-lg);
+                border-top: 6px solid var(--primary);
             }
-            h1 { text-align: center; color: var(--primary); font-size: 26px; margin-top: 0; font-weight: 800; }
-            p.desc { text-align: center; color: #64748b; margin-bottom: 30px; font-size: 15px; }
-            .form-section { 
-                border: 1px solid var(--border); 
-                border-radius: 8px; 
-                padding: 20px; 
-                margin-bottom: 20px; 
-                background: #f1f5f9; 
-                transition: all 0.3s ease;
+
+            .header-banner {
+                text-align: center;
+                margin-bottom: 25px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .header-banner h1 {
+                color: var(--primary);
+                font-size: 26px;
+                margin: 0 0 6px;
+                font-weight: 800;
+                letter-spacing: -0.5px;
+            }
+
+            .header-banner .company-tag {
+                display: inline-block;
+                background: #eff6ff;
+                color: var(--primary);
+                font-weight: 700;
+                font-size: 13px;
+                padding: 4px 12px;
+                border-radius: 20px;
+                border: 1px solid #bfdbfe;
+                margin-bottom: 8px;
+            }
+
+            p.desc {
+                color: var(--text-muted);
+                margin: 0;
+                font-size: 14px;
+            }
+
+            /* شريط الأدوات العلوي */
+            .toolbar {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                background: #f1f5f9;
+                padding: 12px 15px;
+                border-radius: 10px;
+                margin-bottom: 25px;
+                align-items: center;
+                justify-content: space-between;
+                border: 1px solid #e2e8f0;
+            }
+
+            .toolbar-group {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                align-items: center;
+            }
+
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 9px 14px;
+                font-size: 13.5px;
+                font-weight: 600;
+                border-radius: 6px;
+                border: 1px solid transparent;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                font-family: inherit;
+            }
+
+            .btn-primary {
+                background: var(--primary);
+                color: #ffffff;
+            }
+            .btn-primary:hover {
+                background: var(--primary-light);
+            }
+
+            .btn-secondary {
+                background: #ffffff;
+                color: #334155;
+                border-color: var(--border);
+            }
+            .btn-secondary:hover {
+                background: #f8fafc;
+                border-color: #94a3b8;
+            }
+
+            .btn-danger {
+                background: #fee2e2;
+                color: var(--danger);
+                border-color: #fecaca;
+            }
+            .btn-danger:hover {
+                background: #fecaca;
+            }
+
+            .btn-success {
+                background: #dcfce7;
+                color: var(--success);
+                border-color: #bbf7d0;
+            }
+            .btn-success:hover {
+                background: #bbf7d0;
+            }
+
+            .btn-large {
+                width: 100%;
+                padding: 15px;
+                font-size: 17px;
+                font-weight: 700;
+                justify-content: center;
+                border-radius: 8px;
+                margin-top: 15px;
+                box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
+            }
+
+            .btn-small {
+                padding: 4px 8px;
+                font-size: 11.5px;
+                border-radius: 4px;
+                background: #e2e8f0;
+                color: #1e293b;
+                border: none;
+                cursor: pointer;
+                transition: background 0.2s;
+            }
+            .btn-small:hover {
+                background: #cbd5e1;
+            }
+
+            /* أقسام النموذج */
+            .form-section {
+                border: 1px solid var(--border);
+                border-radius: 10px;
+                padding: 22px;
+                margin-bottom: 22px;
+                background: #f8fafc;
+                transition: border-color 0.2s, box-shadow 0.2s;
             }
             .form-section:hover {
                 border-color: #94a3b8;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+                box-shadow: var(--shadow-sm);
             }
-            .form-section h2 { 
-                margin-top: 0; 
-                font-size: 17px; 
-                color: var(--primary); 
-                border-bottom: 2px solid var(--primary); 
-                padding-bottom: 8px; 
-                display: block;
-                margin-bottom: 15px;
+
+            .section-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-bottom: 2px solid var(--primary);
+                padding-bottom: 8px;
+                margin-bottom: 18px;
             }
-            .vertical-stack {
+
+            .section-title {
+                margin: 0;
+                font-size: 16.5px;
+                font-weight: 700;
+                color: var(--primary);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .section-badge {
+                font-size: 12px;
+                background: #e0e7ff;
+                color: var(--primary);
+                padding: 2px 8px;
+                border-radius: 12px;
+                font-weight: normal;
+            }
+
+            /* شبكة الحقول المتجاوبة */
+            .form-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 15px 18px;
+            }
+            .col-span-full {
+                grid-column: 1 / -1;
+            }
+
+            .form-group {
                 display: flex;
                 flex-direction: column;
-                gap: 15px;
             }
-            .form-group { 
-                display: flex; 
-                flex-direction: column; 
+
+            .label-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 6px;
             }
-            label { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: #475569; }
-            input { 
-                padding: 10px 12px; 
-                border: 1px solid var(--border); 
-                border-radius: 6px; 
-                font-size: 14px; 
+
+            label {
+                font-size: 13.5px;
+                font-weight: 700;
+                color: #334155;
+            }
+
+            .input-wrapper {
+                position: relative;
+                display: flex;
+                align-items: stretch;
+            }
+
+            input, select, textarea {
+                width: 100%;
+                padding: 10px 12px;
+                border: 1px solid var(--border);
+                border-radius: 6px;
+                font-size: 13.5px;
                 font-family: inherit;
+                color: var(--text);
+                background: #ffffff;
                 transition: border-color 0.2s, box-shadow 0.2s;
             }
-            input:focus { 
-                outline: none; 
-                border-color: #3b82f6; 
-                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+
+            input:focus, select:focus, textarea:focus {
+                outline: none;
+                border-color: var(--border-focus);
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
             }
-            button { 
-                background: var(--primary); 
-                color: #fff; 
-                border: none; 
-                padding: 16px; 
-                width: 100%; 
-                font-size: 18px; 
-                font-weight: bold; 
-                border-radius: 8px; 
-                cursor: pointer; 
-                margin-top: 15px; 
-                transition: background 0.3s, transform 0.1s;
-                box-shadow: 0 4px 6px rgba(30, 58, 138, 0.2);
+
+            /* Toast Notification */
+            .toast {
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%) translateY(100px);
+                background: #0f172a;
+                color: #ffffff;
+                padding: 12px 24px;
+                border-radius: 8px;
+                box-shadow: var(--shadow-lg);
+                font-size: 14px;
+                font-weight: 600;
+                z-index: 2000;
+                opacity: 0;
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                pointer-events: none;
             }
-            button:hover { background: #1e40af; }
-            button:active { transform: translateY(2px); }
-            #pdf-template { display: none; }
+            .toast.show {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+
+            /* نافذة المعاينة التفاعلية */
+            .preview-modal {
+                position: fixed;
+                inset: 0;
+                background: rgba(15, 23, 42, 0.7);
+                backdrop-filter: blur(4px);
+                z-index: 1500;
+                display: none;
+                overflow-y: auto;
+                padding: 25px 15px;
+            }
+            .preview-modal.active {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .preview-modal-bar {
+                width: 100%;
+                max-width: 210mm;
+                background: #ffffff;
+                padding: 12px 20px;
+                border-radius: 8px 8px 0 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: var(--shadow-md);
+                border-bottom: 2px solid var(--border);
+            }
+
+            .preview-sheet-wrapper {
+                width: 100%;
+                max-width: 210mm;
+                background: #ffffff;
+                padding: 20mm;
+                box-shadow: var(--shadow-lg);
+                border-radius: 0 0 8px 8px;
+                margin-bottom: 30px;
+                box-sizing: border-box;
+                font-family: 'Times New Roman', Arial, sans-serif;
+                font-size: 13.5pt;
+                line-height: 1.6;
+                color: #0f172a;
+            }
+
+            #pdf-template {
+                display: none;
+            }
         }
 
         /* ------------------------- */
@@ -101,57 +351,73 @@
         /* ------------------------- */
         @media print {
             @page {
-                size: A4;
-                margin: 20mm 20mm;
+                size: A4 portrait;
+                margin: 15mm 18mm 15mm 18mm;
             }
             body {
-                background: white;
+                background: #ffffff;
                 margin: 0;
                 padding: 0;
                 font-family: 'Times New Roman', Arial, sans-serif;
-                font-size: 13.5pt;
-                color: #0f172a; 
-                line-height: 1.6;
+                font-size: 13.2pt;
+                color: #0f172a;
+                line-height: 1.55;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
-            .container { display: none !important; }
-            #pdf-template { display: block !important; width: 100%; }
+            .container, .preview-modal, .toast {
+                display: none !important;
+            }
+            #pdf-template {
+                display: block !important;
+                width: 100%;
+            }
 
-            .chapter-title { 
-                font-weight: bold; 
-                margin-top: 12px; 
-                color: #1e3a8a; 
-                font-size: 14.5pt;
+            .chapter-title {
+                font-weight: bold;
+                margin-top: 10px;
+                color: #1e3a8a;
+                font-size: 14pt;
                 border-bottom: 1.5px solid #1e3a8a;
                 display: inline-block;
                 padding-bottom: 2px;
             }
 
-            .doc-title { 
-                text-align: center; 
-                font-weight: bold; 
-                font-size: 24pt; 
-                margin-bottom: 20px; 
+            .doc-title {
+                text-align: center;
+                font-weight: bold;
+                font-size: 23pt;
+                margin-bottom: 15px;
                 color: #1e3a8a;
                 text-decoration: underline;
                 text-underline-offset: 6px;
             }
-            
+
             .bold { font-weight: bold; }
             .underline { text-decoration: underline; }
             .ltr { direction: ltr; display: inline-block; unicode-bidi: embed; }
             .flex-row { display: flex; justify-content: space-between; align-items: baseline; }
-            ul { margin: 5px 0; padding-right: 25px; list-style-type: disc; }
-            li { margin-bottom: 4px; }
-            .signatures { display: flex; justify-content: space-between; margin-top: 45px; }
-            .sig-box { width: 45%; text-align: center; font-weight: bold; font-size: 14pt;}
+            ul { margin: 4px 0; padding-right: 22px; list-style-type: disc; }
+            li { margin-bottom: 3px; }
+
+            .signatures {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 35px;
+                page-break-inside: avoid;
+            }
+            .sig-box {
+                width: 45%;
+                text-align: center;
+                font-weight: bold;
+                font-size: 13.5pt;
+            }
             .text-left { text-align: left; }
-            .indent-conditions { padding-right: 20px; }
-            
+            .indent-conditions { padding-right: 18px; }
+
             .party-header {
                 background-color: #f1f5f9;
-                padding: 4px 8px;
+                padding: 3px 8px;
                 border-radius: 4px;
                 display: inline-block;
                 border-right: 4px solid #1e3a8a;
@@ -162,77 +428,255 @@
 <body>
 
 <div class="container">
-    <h1>مولد العقود</h1>
-    <p class="desc">تم هيكلة بيانات الطرف الأول لتفادي تداخل اللغتين، مع إضافة قيم افتراضية للشركة قابلة للتعديل.</p>
+    <div class="header-banner">
+        <span class="company-tag">EL AABELLAOUI C.A.D</span>
+        <h1>مولد عقود التعيين العقارية</h1>
+        <p class="desc">نظام توليد وإدارة عقود التعيين وحجز الشقق السكنية مع التعبئة والحساب والتفقيط التلقائي.</p>
+    </div>
 
-    <form id="dataForm">
+    <!-- شريط الأدوات العلوي -->
+    <div class="toolbar">
+        <div class="toolbar-group">
+            <button type="button" class="btn btn-primary" onclick="prepareAndPrint()">
+                <span>🖨️</span> توليد وطباعة العقد (PDF)
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="openPreview()">
+                <span>👁️</span> معاينة على الشاشة
+            </button>
+        </div>
+        <div class="toolbar-group">
+            <button type="button" class="btn btn-secondary" onclick="saveDraft()" title="حفظ البيانات المدخلة في المتصفح">
+                <span>💾</span> حفظ مسودة
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="exportJSON()" title="تصدير ملف العقد كـ JSON للأرشفة">
+                <span>📥</span> تصدير JSON
+            </button>
+            <label class="btn btn-secondary" style="margin:0; cursor:pointer;" title="استيراد عقد محفوظ مسبقاً">
+                <span>📤</span> استيراد JSON
+                <input type="file" id="importFileInput" accept=".json" style="display:none;" onchange="importJSON(event)">
+            </label>
+            <button type="button" class="btn btn-danger" onclick="confirmReset()" title="مسح الحقول للبدء من جديد">
+                <span>🗑️</span> مسح
+            </button>
+        </div>
+    </div>
+
+    <form id="dataForm" onsubmit="event.preventDefault(); prepareAndPrint();">
         <!-- 1. بيانات الطرف الأول -->
         <div class="form-section">
-            <h2>1. بيانات الطرف الأول (الشركة)</h2>
-            <div class="vertical-stack">
-                <div class="form-group"><label>اسم الشركة</label><input type="text" id="i_compName" value="EL AABELLAOUI C.A.D" dir="ltr" style="text-align: right;"></div>
-                <div class="form-group"><label>مقر الشركة (المدينة/العنوان)</label><input type="text" id="i_compAddr" value="GARAGE AU SOUSS N°36 HAY EL YOUSSOUFIA TIZNIT" dir="ltr" style="text-align: right;"></div>
-                <div class="form-group"><label>اسم المشروع</label><input type="text" id="i_projName" value="إقامة البشير"></div>
-                <div class="form-group"><label>مكان المشروع / العنوان</label><input type="text" id="i_compBranch" value="ZAWIYA TENIN AGLOU TIZNIT" dir="ltr" style="text-align: right;"></div>
-                <div class="form-group"><label>ممثل الشركة</label><input type="text" id="i_compRep" value="عبد الحفيظ العبلاوي"></div>
+            <div class="section-header">
+                <h2 class="section-title"><span>🏢</span> 1. بيانات الطرف الأول (الشركة)</h2>
+                <span class="section-badge">بيانات الشركة الثابتة</span>
+            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="i_compName">اسم الشركة</label>
+                    <input type="text" id="i_compName" value="EL AABELLAOUI C.A.D" dir="ltr" style="text-align: right;">
+                </div>
+                <div class="form-group">
+                    <label for="i_compRep">ممثل الشركة</label>
+                    <input type="text" id="i_compRep" value="عبد الحفيظ العبلاوي">
+                </div>
+                <div class="form-group col-span-full">
+                    <label for="i_compAddr">مقر الشركة (المدينة/العنوان)</label>
+                    <input type="text" id="i_compAddr" value="GARAGE AU SOUSS N°36 HAY EL YOUSSOUFIA TIZNIT" dir="ltr" style="text-align: right;">
+                </div>
+                <div class="form-group">
+                    <label for="i_projName">اسم المشروع</label>
+                    <input type="text" id="i_projName" value="إقامة البشير">
+                </div>
+                <div class="form-group">
+                    <label for="i_compBranch">مكان المشروع / العنوان</label>
+                    <input type="text" id="i_compBranch" value="ZAWIYA TENIN AGLOU TIZNIT" dir="ltr" style="text-align: right;">
+                </div>
             </div>
         </div>
 
         <!-- 2. بيانات الطرف الثاني -->
         <div class="form-section">
-            <h2>2. بيانات الطرف الثاني (المشتري)</h2>
-            <div class="vertical-stack">
-                <div class="form-group"><label>الاسم الكامل (بالعربية)</label><input type="text" id="i_buyerNameAr" value=""></div>
-                <div class="form-group"><label>الاسم الكامل (بالفرنسية)</label><input type="text" id="i_buyerNameFr" value="" dir="ltr"></div>
-                <div class="form-group"><label>رقم البطاقة الوطنية</label><input type="text" id="i_buyerCin" value=""></div>
-                <div class="form-group"><label>عنوان السكن</label><input type="text" id="i_buyerAddr" value=""></div>
-                <div class="form-group"><label>رقم الهاتف</label><input type="text" id="i_buyerPhone" value="" dir="ltr"></div>
+            <div class="section-header">
+                <h2 class="section-title"><span>👤</span> 2. بيانات الطرف الثاني (المشتري)</h2>
+                <span class="section-badge">معلومات المشتري</span>
+            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="i_buyerNameAr">الاسم الكامل (بالعربية)</label>
+                    <input type="text" id="i_buyerNameAr" placeholder="مثال: محمد الميموني" value="">
+                </div>
+                <div class="form-group">
+                    <label for="i_buyerNameFr">الاسم الكامل (بالفرنسية)</label>
+                    <input type="text" id="i_buyerNameFr" placeholder="Ex: Mohammed EL MIMOUNI" value="" dir="ltr">
+                </div>
+                <div class="form-group">
+                    <label for="i_buyerCin">رقم البطاقة الوطنية (CIN)</label>
+                    <input type="text" id="i_buyerCin" placeholder="مثال: J123456" value="">
+                </div>
+                <div class="form-group">
+                    <label for="i_buyerPhone">رقم الهاتف</label>
+                    <input type="text" id="i_buyerPhone" placeholder="06XXXXXXXX" value="" dir="ltr">
+                </div>
+                <div class="form-group col-span-full">
+                    <label for="i_buyerAddr">عنوان السكن</label>
+                    <input type="text" id="i_buyerAddr" placeholder="العنوان الكامل للمشتري" value="">
+                </div>
             </div>
         </div>
 
         <!-- 3. مواصفات العقار -->
         <div class="form-section">
-            <h2>3. مواصفات العقار</h2>
-            <div class="vertical-stack">
-                <div class="form-group"><label>اسم الإقامة (في الفصل الثاني)</label><input type="text" id="i_residenceName" value="البشير"></div>
-                <div class="form-group"><label>رقم الشقة</label><input type="text" id="i_aptNum" value=""></div>
-                <div class="form-group"><label>المساحة بالأرقام</label><input type="text" id="i_area" value=""></div>
-                <div class="form-group"><label>المساحة بالحروف</label><input type="text" id="i_areaAr" value=""></div>
-                <div class="form-group"><label>الطابق</label><input type="text" id="i_floor" value=""></div>
-                <div class="form-group"><label>عدد الواجهات</label><input type="text" id="i_facades" value=""></div>
-                <div class="form-group"><label>المكونات</label><input type="text" id="i_comp" value=""></div>
+            <div class="section-header">
+                <h2 class="section-title"><span>🏠</span> 3. مواصفات العقار</h2>
+                <span class="section-badge">تفاصيل الشقة</span>
+            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="i_residenceName">اسم الإقامة (في الفصل الثاني)</label>
+                    <input type="text" id="i_residenceName" value="البشير">
+                </div>
+                <div class="form-group">
+                    <label for="i_aptNum">رقم الشقة</label>
+                    <input type="text" id="i_aptNum" placeholder="مثال: 4" value="">
+                </div>
+                <div class="form-group">
+                    <div class="label-row">
+                        <label for="i_area">المساحة بالأرقام (م²)</label>
+                    </div>
+                    <input type="text" id="i_area" placeholder="مثال: 65.50" value="" oninput="onAreaChange()">
+                </div>
+                <div class="form-group">
+                    <div class="label-row">
+                        <label for="i_areaAr">المساحة بالحروف</label>
+                        <button type="button" class="btn-small" onclick="autoTafqeetArea()" title="تحويل المساحة إلى حروف عربية تلقائياً">🔄 تفقيط</button>
+                    </div>
+                    <input type="text" id="i_areaAr" placeholder="مثال: خمسة وستون متراً مربعاً وخمسون سنتيمتراً مربعاً تقريباً" value="">
+                </div>
+                <div class="form-group">
+                    <label for="i_floor">الطابق</label>
+                    <input type="text" id="i_floor" list="floorList" placeholder="مثال: الأول" value="">
+                    <datalist id="floorList">
+                        <option value="السفلي">
+                        <option value="الأرضي">
+                        <option value="الأول">
+                        <option value="الثاني">
+                        <option value="الثالث">
+                        <option value="الرابع">
+                    </datalist>
+                </div>
+                <div class="form-group">
+                    <label for="i_facades">عدد الواجهات</label>
+                    <input type="text" id="i_facades" list="facadesList" placeholder="مثال: واجهتان" value="">
+                    <datalist id="facadesList">
+                        <option value="واجهة واحدة">
+                        <option value="واجهتان">
+                        <option value="ثلاث واجهات">
+                    </datalist>
+                </div>
+                <div class="form-group col-span-full">
+                    <label for="i_comp">المكونات</label>
+                    <input type="text" id="i_comp" placeholder="مثال: صالون وغرفتين ومطبخ وحمام وشرفة" value="">
+                </div>
             </div>
         </div>
 
         <!-- 4. الشروط المالية والتواريخ -->
         <div class="form-section">
-            <h2>4. الشروط المالية وتفاصيل التحرير</h2>
-            <div class="vertical-stack">
-                <div class="form-group"><label>الثمن النهائي بالأرقام (درهم)</label><input type="number" id="i_total" value="" oninput="calcBal()"></div>
-                <div class="form-group"><label>الثمن النهائي بالحروف</label><input type="text" id="i_totalAr" value=""></div>
-                
-                <div class="form-group"><label>المبلغ المودع بالأرقام (درهم)</label><input type="number" id="i_dep" value="" oninput="calcBal()"></div>
-                <div class="form-group"><label>المبلغ المودع بالحروف</label><input type="text" id="i_depAr" value=""></div>
-                
+            <div class="section-header">
+                <h2 class="section-title"><span>💰</span> 4. الشروط المالية وتفاصيل التحرير</h2>
+                <span class="section-badge">الأداء والتواريخ</span>
+            </div>
+            <div class="form-grid">
                 <div class="form-group">
-                    <label>تفاصيل الإيداع والتحويل (التواريخ، البنك، الخ...)</label>
-                    <input type="text" id="i_transferDetails" value="">
+                    <div class="label-row">
+                        <label for="i_total">الثمن النهائي بالأرقام (درهم)</label>
+                    </div>
+                    <input type="number" id="i_total" placeholder="مثال: 450000" value="" oninput="onTotalChange()">
                 </div>
-
-                <div class="form-group"><label>المبلغ المتبقي بالأرقام (درهم)</label><input type="number" id="i_bal" value=""></div>
-                <div class="form-group"><label>المبلغ المتبقي بالحروف</label><input type="text" id="i_balAr" value=""></div>
-                <div class="form-group"><label>تفاصيل طريقة سداد المبلغ المتبقي والآجال</label><input type="text" id="i_paymentDetails" value=""></div>
-                
-                <div class="form-group"><label>مكان التحرير (المدينة)</label><input type="text" id="i_signCity" value="تيزنيت"></div>
-                <div class="form-group"><label>تاريخ التحرير</label><input type="text" id="i_signDate" value=""></div>
+                <div class="form-group">
+                    <div class="label-row">
+                        <label for="i_totalAr">الثمن النهائي بالحروف</label>
+                        <button type="button" class="btn-small" onclick="autoTafqeetTotal()" title="تحويل الثمن إلى حروف عربية">🔄 تفقيط</button>
+                    </div>
+                    <input type="text" id="i_totalAr" placeholder="مثال: أربعمائة وخمسون ألف درهم لا غير" value="">
+                </div>
+                <div class="form-group">
+                    <div class="label-row">
+                        <label for="i_dep">المبلغ المودع بالأرقام (درهم)</label>
+                    </div>
+                    <input type="number" id="i_dep" placeholder="مثال: 50000" value="" oninput="onDepChange()">
+                </div>
+                <div class="form-group">
+                    <div class="label-row">
+                        <label for="i_depAr">المبلغ المودع بالحروف</label>
+                        <button type="button" class="btn-small" onclick="autoTafqeetDep()" title="تحويل المبلغ المودع إلى حروف عربية">🔄 تفقيط</button>
+                    </div>
+                    <input type="text" id="i_depAr" placeholder="مثال: خمسون ألف درهم لا غير" value="">
+                </div>
+                <div class="form-group col-span-full">
+                    <label for="i_transferDetails">تفاصيل الإيداع والتحويل (التواريخ، البنك، الخ...)</label>
+                    <input type="text" id="i_transferDetails" placeholder="مثال: نقداً / بواسطة شيك بنكي رقم ... على بنك ..." value="">
+                </div>
+                <div class="form-group">
+                    <div class="label-row">
+                        <label for="i_bal">المبلغ المتبقي بالأرقام (درهم)</label>
+                        <span style="font-size:11px; color:var(--text-muted);">(محسوب تلقائياً)</span>
+                    </div>
+                    <input type="number" id="i_bal" placeholder="0" value="" oninput="onBalChange()">
+                </div>
+                <div class="form-group">
+                    <div class="label-row">
+                        <label for="i_balAr">المبلغ المتبقي بالحروف</label>
+                        <button type="button" class="btn-small" onclick="autoTafqeetBal()" title="تحويل الباقي إلى حروف عربية">🔄 تفقيط</button>
+                    </div>
+                    <input type="text" id="i_balAr" placeholder="مثال: أربعمائة ألف درهم لا غير" value="">
+                </div>
+                <div class="form-group col-span-full">
+                    <label for="i_paymentDetails">تفاصيل طريقة سداد المبلغ المتبقي والآجال</label>
+                    <input type="text" id="i_paymentDetails" placeholder="مثال: يؤدى عند إبرام العقد النهائي لدى الموثق" value="">
+                </div>
+                <div class="form-group">
+                    <label for="i_signCity">مكان التحرير (المدينة)</label>
+                    <input type="text" id="i_signCity" value="تيزنيت">
+                </div>
+                <div class="form-group">
+                    <div class="label-row">
+                        <label for="i_signDate">تاريخ التحرير</label>
+                        <button type="button" class="btn-small" onclick="setTodayDate()">📅 اليوم</button>
+                    </div>
+                    <input type="text" id="i_signDate" placeholder="مثال: 17/11/2026" value="">
+                </div>
             </div>
         </div>
 
-        <button type="button" onclick="prepareAndPrint()">توليد وطباعة العقد (PDF)</button>
+        <button type="button" class="btn btn-primary btn-large" onclick="prepareAndPrint()">
+            🖨️ توليد وطباعة العقد (PDF)
+        </button>
     </form>
 </div>
 
-<!-- المحتوى الذي سيتم طباعته -->
+<!-- نافذة المعاينة المباشرة على الشاشة -->
+<div id="previewModal" class="preview-modal" onclick="if(event.target===this) closePreview();">
+    <div class="preview-modal-bar">
+        <div style="font-weight:700; color:var(--primary); font-size:15px;">
+            📄 معاينة العقد على ورقة A4 (قبل الطباعة)
+        </div>
+        <div class="toolbar-group">
+            <button type="button" class="btn btn-primary" onclick="prepareAndPrint()">
+                <span>🖨️</span> طباعة فورية / PDF
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="closePreview()">
+                <span>✖️</span> إغلاق
+            </button>
+        </div>
+    </div>
+    <div class="preview-sheet-wrapper" id="previewSheet">
+        <!-- يتم ملء محتوى المعاينة ديناميكياً -->
+    </div>
+</div>
+
+<!-- إشعار Toast -->
+<div id="toast" class="toast"></div>
+
+<!-- المحتوى الذي سيتم طباعته (A4 Print Template) -->
 <div id="pdf-template">
     <div class="doc-title">عقد التعيين</div>
     
@@ -315,68 +759,404 @@
 </div>
 
 <script>
-    function calcBal() {
-        let total = parseFloat(document.getElementById('i_total').value) || 0;
-        let dep = parseFloat(document.getElementById('i_dep').value) || 0;
-        let bal = total - dep;
-        if (!isNaN(bal) && bal >= 0) {
-            document.getElementById('i_bal').value = bal;
+    /* ==========================================================
+       محرك التفقيط (تحويل الأرقام إلى كلمات عربية بالدرهم المغربي)
+       ========================================================== */
+    const Tafqeet = {
+        ones: ['', 'واحد', 'اثنان', 'ثلاثة', 'أربعة', 'خمسة', 'ستة', 'سبعة', 'ثمانية', 'تسعة'],
+        teens: ['عشرة', 'أحد عشر', 'اثنا عشر', 'ثلاثة عشر', 'أربعة عشر', 'خمسة عشر', 'ستة عشر', 'سبعة عشر', 'ثمانية عشر', 'تسعة عشر'],
+        tens: ['', 'عشرة', 'عشرون', 'ثلاثون', 'أربعون', 'خمسون', 'ستون', 'سبعون', 'ثمانون', 'تسعون'],
+        hundreds: ['', 'مائة', 'مائتان', 'ثلاثمائة', 'أربعمائة', 'خمسمائة', 'ستمائة', 'سبعمائة', 'ثمانمائة', 'تسعمائة'],
+
+        convert3Digits(n) {
+            if (!n || n <= 0) return '';
+            const res = [];
+            const h = Math.floor(n / 100);
+            const rem = n % 100;
+            if (h > 0) res.push(this.hundreds[h]);
+            if (rem > 0) {
+                if (rem < 10) {
+                    res.push(this.ones[rem]);
+                } else if (rem >= 10 && rem < 20) {
+                    res.push(this.teens[rem - 10]);
+                } else {
+                    const u = rem % 10;
+                    const t = Math.floor(rem / 10);
+                    if (u > 0) {
+                        res.push(this.ones[u] + ' و' + this.tens[t]);
+                    } else {
+                        res.push(this.tens[t]);
+                    }
+                }
+            }
+            return res.join(' و');
+        },
+
+        convert(number) {
+            let num = Math.floor(Math.abs(Number(number)));
+            if (isNaN(num) || num === 0) return 'صفر';
+
+            const millions = Math.floor(num / 1000000);
+            num %= 1000000;
+            const thousands = Math.floor(num / 1000);
+            const remainder = num % 1000;
+
+            const parts = [];
+
+            if (millions > 0) {
+                if (millions === 1) parts.push('مليون');
+                else if (millions === 2) parts.push('مليونان');
+                else if (millions >= 3 && millions <= 10) parts.push(this.convert3Digits(millions) + ' ملايين');
+                else parts.push(this.convert3Digits(millions) + ' مليون');
+            }
+
+            if (thousands > 0) {
+                if (thousands === 1) parts.push('ألف');
+                else if (thousands === 2) parts.push('ألفان');
+                else if (thousands >= 3 && thousands <= 10) parts.push(this.convert3Digits(thousands) + ' آلاف');
+                else parts.push(this.convert3Digits(thousands) + ' ألف');
+            }
+
+            if (remainder > 0) {
+                parts.push(this.convert3Digits(remainder));
+            }
+
+            return parts.join(' و');
+        },
+
+        toCurrency(val) {
+            const num = parseFloat(val);
+            if (isNaN(num) || num <= 0) return '';
+            const intPart = Math.floor(num);
+            const decPart = Math.round((num - intPart) * 100);
+
+            let str = this.convert(intPart) + ' درهم';
+            if (decPart > 0) {
+                str += ' و' + this.convert(decPart) + ' سنتیماً';
+            }
+            return str + ' لا غير';
+        },
+
+        toArea(val) {
+            const num = parseFloat(val);
+            if (isNaN(num) || num <= 0) return '';
+            const intPart = Math.floor(num);
+            const decPart = Math.round((num - intPart) * 100);
+
+            let str = this.convert(intPart) + ' متراً مربعاً';
+            if (decPart > 0) {
+                str += ' و' + this.convert(decPart) + ' سنتيمتراً مربعاً';
+            }
+            return str + ' تقريباً';
         }
-    }
+    };
 
+    /* ==========================================================
+       تنسيق الأرقام والحسابات
+       ========================================================== */
     function formatNumber(num) {
-        return Number(num).toLocaleString('en-US', { minimumFractionDigits: 2 }).replace(/,/g, '');
+        if (num === '' || num === null || isNaN(num)) return '0.00';
+        return Number(num).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
-    function prepareAndPrint() {
-        document.getElementById('o_compName').innerText = document.getElementById('i_compName').value;
-        document.getElementById('o_compName2').innerText = document.getElementById('i_compName').value;
-        document.getElementById('o_compName3').innerText = document.getElementById('i_compName').value;
-        document.getElementById('o_compAddr').innerText = document.getElementById('i_compAddr').value;
-        document.getElementById('o_compBranch').innerText = document.getElementById('i_compBranch').value;
-        document.getElementById('o_projName').innerText = document.getElementById('i_projName').value;
-        document.getElementById('o_compRep').innerText = document.getElementById('i_compRep').value;
+    function calcBal() {
+        const total = parseFloat(document.getElementById('i_total').value) || 0;
+        const dep = parseFloat(document.getElementById('i_dep').value) || 0;
+        const bal = total - dep;
+        if (!isNaN(bal)) {
+            document.getElementById('i_bal').value = bal >= 0 ? bal : 0;
+        }
+        return bal;
+    }
 
-        document.getElementById('o_residenceName').innerText = document.getElementById('i_residenceName').value;
+    /* تفقيط تلقائي عند تعديل الحقول */
+    function onTotalChange() {
+        calcBal();
+        autoTafqeetTotal();
+        autoTafqeetBal();
+        autoSaveDebounced();
+    }
 
-        document.getElementById('o_buyerNameAr').innerText = document.getElementById('i_buyerNameAr').value;
-        document.getElementById('o_buyerNameAr2').innerText = document.getElementById('i_buyerNameAr').value;
-        document.getElementById('o_buyerNameAr3').innerText = document.getElementById('i_buyerNameAr').value;
-        document.getElementById('o_buyerNameFr').innerText = document.getElementById('i_buyerNameFr').value;
-        document.getElementById('o_buyerCin').innerText = document.getElementById('i_buyerCin').value;
-        document.getElementById('o_buyerAddr').innerText = document.getElementById('i_buyerAddr').value;
-        document.getElementById('o_buyerPhone').innerText = document.getElementById('i_buyerPhone').value;
+    function onDepChange() {
+        calcBal();
+        autoTafqeetDep();
+        autoTafqeetBal();
+        autoSaveDebounced();
+    }
 
-        document.getElementById('o_aptNum').innerText = document.getElementById('i_aptNum').value;
-        document.getElementById('o_aptNum2').innerText = document.getElementById('i_aptNum').value;
-        document.getElementById('o_area').innerText = document.getElementById('i_area').value;
-        document.getElementById('o_areaAr').innerText = document.getElementById('i_areaAr').value;
-        document.getElementById('o_floor').innerText = document.getElementById('i_floor').value;
-        document.getElementById('o_facades').innerText = document.getElementById('i_facades').value;
-        document.getElementById('o_comp').innerText = document.getElementById('i_comp').value;
+    function onBalChange() {
+        autoTafqeetBal();
+        autoSaveDebounced();
+    }
 
-        // الحسابات المباشرة
-        let total = parseFloat(document.getElementById('i_total').value) || 0;
-        let dep = parseFloat(document.getElementById('i_dep').value) || 0;
-        let bal = parseFloat(document.getElementById('i_bal').value) || (total - dep);
+    function onAreaChange() {
+        autoTafqeetArea();
+        autoSaveDebounced();
+    }
+
+    function autoTafqeetTotal() {
+        const val = document.getElementById('i_total').value;
+        const text = Tafqeet.toCurrency(val);
+        if (text) document.getElementById('i_totalAr').value = text;
+    }
+
+    function autoTafqeetDep() {
+        const val = document.getElementById('i_dep').value;
+        const text = Tafqeet.toCurrency(val);
+        if (text) document.getElementById('i_depAr').value = text;
+    }
+
+    function autoTafqeetBal() {
+        const val = document.getElementById('i_bal').value;
+        const text = Tafqeet.toCurrency(val);
+        if (text) document.getElementById('i_balAr').value = text;
+    }
+
+    function autoTafqeetArea() {
+        const val = document.getElementById('i_area').value;
+        const text = Tafqeet.toArea(val);
+        if (text) document.getElementById('i_areaAr').value = text;
+    }
+
+    /* تعبئة تاريخ اليوم */
+    function setTodayDate() {
+        const now = new Date();
+        const d = String(now.getDate()).padStart(2, '0');
+        const m = String(now.getMonth() + 1).padStart(2, '0');
+        const y = now.getFullYear();
+        document.getElementById('i_signDate').value = `${d}/${m}/${y}`;
+        showToast('تم إدراج تاريخ اليوم');
+        autoSaveDebounced();
+    }
+
+    /* ==========================================================
+       مزامنة الحقول وتوليد العقد
+       ========================================================== */
+    const fieldMapping = [
+        ['i_compName', ['o_compName', 'o_compName2', 'o_compName3']],
+        ['i_compAddr', ['o_compAddr']],
+        ['i_compBranch', ['o_compBranch']],
+        ['i_projName', ['o_projName']],
+        ['i_compRep', ['o_compRep']],
+        ['i_residenceName', ['o_residenceName']],
+        ['i_buyerNameAr', ['o_buyerNameAr', 'o_buyerNameAr2', 'o_buyerNameAr3']],
+        ['i_buyerNameFr', ['o_buyerNameFr']],
+        ['i_buyerCin', ['o_buyerCin']],
+        ['i_buyerAddr', ['o_buyerAddr']],
+        ['i_buyerPhone', ['o_buyerPhone']],
+        ['i_aptNum', ['o_aptNum', 'o_aptNum2']],
+        ['i_area', ['o_area']],
+        ['i_areaAr', ['o_areaAr']],
+        ['i_floor', ['o_floor']],
+        ['i_facades', ['o_facades']],
+        ['i_comp', ['o_comp']],
+        ['i_totalAr', ['o_totalAr']],
+        ['i_depAr', ['o_depAr']],
+        ['i_balAr', ['o_balAr']],
+        ['i_transferDetails', ['o_transferDetails']],
+        ['i_paymentDetails', ['o_paymentDetails']],
+        ['i_signCity', ['o_signCity']],
+        ['i_signDate', ['o_signDate']]
+    ];
+
+    function syncDataToTemplate() {
+        // الحقول النصية
+        fieldMapping.forEach(([inputId, outputIds]) => {
+            const input = document.getElementById(inputId);
+            const val = input ? input.value : '';
+            outputIds.forEach(outId => {
+                const target = document.getElementById(outId);
+                if (target) target.innerText = val;
+            });
+        });
+
+        // المبالغ المالية مع التنسيق
+        const total = parseFloat(document.getElementById('i_total').value) || 0;
+        const dep = parseFloat(document.getElementById('i_dep').value) || 0;
+        const bal = parseFloat(document.getElementById('i_bal').value) || (total - dep);
 
         document.getElementById('o_total').innerText = formatNumber(total);
         document.getElementById('o_dep').innerText = formatNumber(dep);
         document.getElementById('o_bal').innerText = formatNumber(bal);
-        
-        document.getElementById('o_totalAr').innerText = document.getElementById('i_totalAr').value;
-        document.getElementById('o_depAr').innerText = document.getElementById('i_depAr').value;
-        document.getElementById('o_balAr').innerText = document.getElementById('i_balAr').value;
+    }
 
-        document.getElementById('o_transferDetails').innerText = document.getElementById('i_transferDetails').value;
-        document.getElementById('o_paymentDetails').innerText = document.getElementById('i_paymentDetails').value;
-        
-        // ربط مكان وتاريخ التحرير
-        document.getElementById('o_signCity').innerText = document.getElementById('i_signCity').value;
-        document.getElementById('o_signDate').innerText = document.getElementById('i_signDate').value;
-
+    function prepareAndPrint() {
+        syncDataToTemplate();
+        saveDraft(false);
+        closePreview();
         window.print();
     }
+
+    /* ==========================================================
+       المعاينة على الشاشة (Screen Preview Modal)
+       ========================================================== */
+    function openPreview() {
+        syncDataToTemplate();
+        const templateHtml = document.getElementById('pdf-template').innerHTML;
+        document.getElementById('previewSheet').innerHTML = templateHtml;
+        document.getElementById('previewModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePreview() {
+        document.getElementById('previewModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    /* ==========================================================
+       إشعارات Toast
+       ========================================================== */
+    let toastTimeout = null;
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.innerText = msg;
+        toast.classList.add('show');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+            toast.classList.remove('show');
+        }, 2500);
+    }
+
+    /* ==========================================================
+       الحفظ المحلي والاسترجاع (Local Storage)
+       ========================================================== */
+    const STORAGE_KEY = 'el_aabellaoui_contract_draft_v16';
+
+    function getFormData() {
+        const inputs = document.querySelectorAll('#dataForm input, #dataForm select');
+        const data = {};
+        inputs.forEach(el => {
+            if (el.id) data[el.id] = el.value;
+        });
+        return data;
+    }
+
+    function setFormData(data) {
+        if (!data || typeof data !== 'object') return;
+        Object.keys(data).forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.value = data[id];
+        });
+        calcBal();
+    }
+
+    function saveDraft(notify = true) {
+        try {
+            const data = getFormData();
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            if (notify) showToast('✅ تم حفظ المسودة بنجاح في المتصفح');
+        } catch (e) {
+            console.error('Save failed:', e);
+        }
+    }
+
+    function loadDraft() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (raw) {
+                const data = JSON.parse(raw);
+                setFormData(data);
+                return true;
+            }
+        } catch (e) {
+            console.error('Load failed:', e);
+        }
+        return false;
+    }
+
+    let saveTimer = null;
+    function autoSaveDebounced() {
+        clearTimeout(saveTimer);
+        saveTimer = setTimeout(() => {
+            saveDraft(false);
+        }, 800);
+    }
+
+    function confirmReset() {
+        if (confirm('هل أنت متأكد من رغبتك في تفريغ حقول النموذج؟\n(سيتم الحفاظ على بيانات الشركة الافتراضية)')) {
+            // حفظ بيانات الشركة مؤقتاً
+            const compData = {
+                i_compName: document.getElementById('i_compName').value,
+                i_compAddr: document.getElementById('i_compAddr').value,
+                i_projName: document.getElementById('i_projName').value,
+                i_compBranch: document.getElementById('i_compBranch').value,
+                i_compRep: document.getElementById('i_compRep').value,
+                i_residenceName: document.getElementById('i_residenceName').value,
+                i_signCity: document.getElementById('i_signCity').value
+            };
+
+            document.getElementById('dataForm').reset();
+            setFormData(compData);
+            document.getElementById('i_bal').value = '';
+            setTodayDate();
+            saveDraft(false);
+            showToast('تم تفريغ الحقول مع الإبقاء على بيانات الشركة');
+        }
+    }
+
+    /* ==========================================================
+       تصدير واستيراد ملفات العقد (JSON Backup / Export)
+       ========================================================== */
+    function exportJSON() {
+        const data = getFormData();
+        const buyer = (data.i_buyerNameAr || 'client').trim().replace(/\s+/g, '_');
+        const apt = data.i_aptNum ? `_apt${data.i_aptNum}` : '';
+        const filename = `contrat_${buyer}${apt}_${new Date().toISOString().slice(0,10)}.json`;
+
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('📥 تم تحميل ملف العقد كـ JSON');
+    }
+
+    function importJSON(event) {
+        const file = event.target.files && event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const data = JSON.parse(e.target.result);
+                setFormData(data);
+                saveDraft(false);
+                showToast('📤 تم استيراد بيانات العقد بنجاح');
+            } catch (err) {
+                alert('عذراً، الملف المحدد غير صالح أو تالف.');
+            }
+            event.target.value = '';
+        };
+        reader.readAsText(file);
+    }
+
+    /* ==========================================================
+       التهيئة عند بدء التحميل
+       ========================================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+        // استعادة المسودة إن وجدت، أو وضع تاريخ اليوم افتراضياً
+        const loaded = loadDraft();
+        if (!loaded || !document.getElementById('i_signDate').value) {
+            setTodayDate();
+        }
+
+        // الاستماع للتغييرات في كل الحقول للحفظ التلقائي
+        document.querySelectorAll('#dataForm input').forEach(input => {
+            input.addEventListener('input', autoSaveDebounced);
+        });
+
+        // اختصار لوحة المفاتيح: Ctrl+P أو Cmd+P يفتح التوليد المنظم
+        window.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'p') {
+                e.preventDefault();
+                prepareAndPrint();
+            }
+        });
+    });
 </script>
 
 </body>
