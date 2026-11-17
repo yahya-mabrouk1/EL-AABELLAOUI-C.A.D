@@ -1,0 +1,27 @@
+{
+  "name": "EL AABELLAOUI C.A.D - عقود التعيين",
+  "short_name": "EL AABELLAOUI",
+  "description": "مولد عقود التعيين وحجز الشقق العقارية - إقامة البشير",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f8fafc",
+  "theme_color": "#1e3a8a",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

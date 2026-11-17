@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مولد عقود التعيين العقارية | EL AABELLAOUI C.A.D</title>
+    
+    <!-- PWA Settings (Installation sur écran d'accueil Android / iOS) -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1e3a8a">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="EL AABELLAOUI">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    
     <style>
         :root {
             --primary: #1e3a8a;
@@ -468,6 +479,9 @@
             </button>
             <button type="button" class="btn btn-secondary" onclick="openPreview()">
                 <span>👁️</span> معاينة على الشاشة
+            </button>
+            <button type="button" id="btnInstallApp" class="btn btn-success" style="display:none;" onclick="installPWA()" title="تثبيت التطبيق على الشاشة الرئيسية لهاتفك">
+                <span>📲</span> إضافة إلى الشاشة الرئيسية
             </button>
         </div>
         <div class="toolbar-group">
@@ -1196,6 +1210,49 @@
                 prepareAndPrint();
             }
         });
+    });
+
+    /* ==========================================================
+       دعم Progressive Web App (PWA) والتثبيت على الهاتف
+       ========================================================== */
+    let deferredPrompt = null;
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw.js').then((reg) => {
+                console.log('PWA Service Worker registered:', reg.scope);
+            }).catch((err) => {
+                console.log('PWA Service Worker failed:', err);
+            });
+        });
+    }
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        const btn = document.getElementById('btnInstallApp');
+        if (btn) btn.style.display = 'inline-flex';
+    });
+
+    function installPWA() {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    showToast('🎉 تم تثبيت التطبيق على هاتفك بنجاح');
+                }
+                deferredPrompt = null;
+                const btn = document.getElementById('btnInstallApp');
+                if (btn) btn.style.display = 'none';
+            });
+        }
+    }
+
+    window.addEventListener('appinstalled', () => {
+        showToast('✅ التطبيق مثبت الآن على الشاشة الرئيسية');
+        const btn = document.getElementById('btnInstallApp');
+        if (btn) btn.style.display = 'none';
+        deferredPrompt = null;
     });
 </script>
 

@@ -67,37 +67,33 @@ Ce projet fournit une application web légère, zéro dépendance, fonctionnant 
 
 ```text
 EL-AABELLAOUI-C.A.D/
-├── index.html                  # Application Web & PC autonome (fonctionne hors-ligne et GitHub Pages)
-├── EL-AABELLAOUI-C.A.D.apk     # Application Android compilée et signée (prête à installer)
-├── android/                    # Projet source Android Studio complet
-│   ├── build_apk.sh            # Script de compilation autonome pour régénérer l'APK
-│   ├── app/src/main/           # Code Java natif, Manifeste et ressources
-│   └── README.md               # Guide dédié à l'application mobile
-├── .gitignore                  # Exclusion des fichiers temporaires de build
-└── README.md                   # Documentation générale du projet
+├── index.html            # Application Web principale (PWA & 100% hors-ligne)
+├── manifest.json         # Configuration PWA pour l'installation sur écran d'accueil
+├── sw.js                 # Service Worker (gestion du cache et mode hors-ligne)
+├── icon-192.png          # Icône d'application HD (192x192)
+├── icon-512.png          # Icône d'application HD (512x512)
+└── README.md             # Documentation complète du projet
 ```
 
 ---
 
-## 📱 Version Mobile Android (APK)
+## 📲 Installation sur Smartphone / Tablette (PWA - Écran d'accueil)
 
-Un fichier APK autonome est directement inclus dans le dépôt :
+L'application est une **PWA (Progressive Web App)** certifiée. Elle s'installe directement sur l'écran d'accueil de votre téléphone sans passer par le Play Store ni manipuler de fichier APK :
 
-👉 **[EL-AABELLAOUI-C.A.D.apk](file:///home/yahya/EL-AABELLAOUI-C.A.D/EL-AABELLAOUI-C.A.D.apk)** *(~29 Ko)*
-
-### Fonctionnalités Mobiles Natives :
-* **Impression A4 / Export PDF natif** : déclenche le service d'impression Android (`PrintManager`) pour imprimer via Wi-Fi/Bluetooth ou générer un PDF local.
-* **Partage direct** : le bouton d'export JSON ouvre le menu de partage Android (envoi direct sur WhatsApp, par e-mail, etc.).
-* **100% Hors-ligne** : fonctionne sans connexion Internet sur le terrain.
-
-### Installation sur Smartphone / Tablette :
-1. Téléchargez ou transférez **[EL-AABELLAOUI-C.A.D.apk](file:///home/yahya/EL-AABELLAOUI-C.A.D/EL-AABELLAOUI-C.A.D.apk)** sur votre appareil.
-2. Touchez le fichier `.apk` et autorisez l'installation depuis cette source (*Paramètres > Autoriser cette source*).
-3. Cliquez sur **Installer**.
+### Comment l'installer en 1 clic :
+1. **Activez GitHub Pages** sur votre dépôt :
+   * Sur GitHub, allez dans **Settings > Pages**.
+   * Sous *Branch*, sélectionnez `main` et `/ (root)` puis cliquez sur **Save**.
+   * GitHub vous donne une adresse HTTPS (ex : `https://yahya-mabrouk1.github.io/EL-AABELLAOUI-C.A.D/`).
+2. **Ouvrez cette adresse sur votre téléphone** (avec Chrome ou Safari).
+3. Cliquez directement sur le nouveau bouton vert en haut :
+   * **« 📲 إضافة إلى الشاشة الرئيسية »** (ou via le menu Chrome ⋮ > **Installer l'application** / **Ajouter à l'écran d'accueil**).
+4. **C'est prêt !** L'application s'ouvre en plein écran sans barre d'adresse, possède sa propre icône et fonctionne **100% hors-ligne**.
 
 ---
 
-## 💻 Version Web / PC (Utilisation directe)
+## 💻 Utilisation sur PC (En local)
 
 ### Option 1 : Utilisation directe en local (Recommandé)
 1. Double-cliquez simplement sur [index.html](file:///home/yahya/EL-AABELLAOUI-C.A.D/index.html) depuis votre explorateur de fichiers.
