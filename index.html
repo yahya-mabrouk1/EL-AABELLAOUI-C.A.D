@@ -984,7 +984,12 @@
         syncDataToTemplate();
         saveDraft(false);
         closePreview();
-        window.print();
+        if (window.AndroidBridge && window.AndroidBridge.printContract) {
+            const buyer = (document.getElementById('i_buyerNameAr').value || 'client').trim();
+            window.AndroidBridge.printContract('عقد_تعيين_' + buyer);
+        } else {
+            window.print();
+        }
     }
 
     /* ==========================================================
@@ -1102,8 +1107,15 @@
         const buyer = (data.i_buyerNameAr || 'client').trim().replace(/\s+/g, '_');
         const apt = data.i_aptNum ? `_apt${data.i_aptNum}` : '';
         const filename = `contrat_${buyer}${apt}_${new Date().toISOString().slice(0,10)}.json`;
+        const jsonStr = JSON.stringify(data, null, 2);
 
-        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        if (window.AndroidBridge && window.AndroidBridge.shareContractJson) {
+            window.AndroidBridge.shareContractJson(jsonStr, filename);
+            showToast('📲 جاري فتح المشاركة...');
+            return;
+        }
+
+        const blob = new Blob([jsonStr], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;

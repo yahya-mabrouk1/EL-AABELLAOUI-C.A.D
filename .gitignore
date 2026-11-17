@@ -1,0 +1,10 @@
+# Build directories
+android/build/
+android/.gradle/
+.gradle/
+*.idsig
+
+# Editor / OS files
+.DS_Store
+*.swp
+*~

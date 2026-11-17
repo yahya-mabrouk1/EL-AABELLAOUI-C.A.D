@@ -67,22 +67,43 @@ Ce projet fournit une application web légère, zéro dépendance, fonctionnant 
 
 ```text
 EL-AABELLAOUI-C.A.D/
-├── index.html            # Application web principale complète (CSS, HTML, JS)
-└── README.md             # Documentation complète du projet
+├── index.html                  # Application Web & PC autonome (fonctionne hors-ligne et GitHub Pages)
+├── EL-AABELLAOUI-C.A.D.apk     # Application Android compilée et signée (prête à installer)
+├── android/                    # Projet source Android Studio complet
+│   ├── build_apk.sh            # Script de compilation autonome pour régénérer l'APK
+│   ├── app/src/main/           # Code Java natif, Manifeste et ressources
+│   └── README.md               # Guide dédié à l'application mobile
+├── .gitignore                  # Exclusion des fichiers temporaires de build
+└── README.md                   # Documentation générale du projet
 ```
-
-> **Aucune dépendance externe requise** : ni Node.js, ni CDN, ni bibliothèque tierce. L'application est 100% autonome et sécurisée.
 
 ---
 
-## 🚀 Guide d'Utilisation
+## 📱 Version Mobile Android (APK)
+
+Un fichier APK autonome est directement inclus dans le dépôt :
+
+👉 **[EL-AABELLAOUI-C.A.D.apk](file:///home/yahya/EL-AABELLAOUI-C.A.D/EL-AABELLAOUI-C.A.D.apk)** *(~29 Ko)*
+
+### Fonctionnalités Mobiles Natives :
+* **Impression A4 / Export PDF natif** : déclenche le service d'impression Android (`PrintManager`) pour imprimer via Wi-Fi/Bluetooth ou générer un PDF local.
+* **Partage direct** : le bouton d'export JSON ouvre le menu de partage Android (envoi direct sur WhatsApp, par e-mail, etc.).
+* **100% Hors-ligne** : fonctionne sans connexion Internet sur le terrain.
+
+### Installation sur Smartphone / Tablette :
+1. Téléchargez ou transférez **[EL-AABELLAOUI-C.A.D.apk](file:///home/yahya/EL-AABELLAOUI-C.A.D/EL-AABELLAOUI-C.A.D.apk)** sur votre appareil.
+2. Touchez le fichier `.apk` et autorisez l'installation depuis cette source (*Paramètres > Autoriser cette source*).
+3. Cliquez sur **Installer**.
+
+---
+
+## 💻 Version Web / PC (Utilisation directe)
 
 ### Option 1 : Utilisation directe en local (Recommandé)
 1. Double-cliquez simplement sur [index.html](file:///home/yahya/EL-AABELLAOUI-C.A.D/index.html) depuis votre explorateur de fichiers.
 2. Le fichier s'ouvre dans votre navigateur par défaut (Chrome, Firefox, Edge, Safari, Brave...).
 
 ### Option 2 : Lancement via un serveur local (Optionnel)
-Si vous préférez exécuter l'application sous forme de serveur web local :
 ```bash
 cd /home/yahya/EL-AABELLAOUI-C.A.D
 python3 -m http.server 8080
