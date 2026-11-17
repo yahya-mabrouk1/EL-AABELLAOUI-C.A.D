@@ -67,8 +67,7 @@ Ce projet fournit une application web légère, zéro dépendance, fonctionnant 
 
 ```text
 EL-AABELLAOUI-C.A.D/
-├── generator_v16.html    # Application principale complète v16 (CSS, HTML, JS)
-├── index.html            # Point d'entrée avec redirection vers generator_v16.html
+├── index.html            # Application web principale complète (CSS, HTML, JS)
 └── README.md             # Documentation complète du projet
 ```
 
@@ -79,7 +78,7 @@ EL-AABELLAOUI-C.A.D/
 ## 🚀 Guide d'Utilisation
 
 ### Option 1 : Utilisation directe en local (Recommandé)
-1. Double-cliquez simplement sur [generator_v16.html](file:///home/yahya/EL-AABELLAOUI-C.A.D/generator_v16.html) ou [index.html](file:///home/yahya/EL-AABELLAOUI-C.A.D/index.html) depuis votre explorateur de fichiers.
+1. Double-cliquez simplement sur [index.html](file:///home/yahya/EL-AABELLAOUI-C.A.D/index.html) depuis votre explorateur de fichiers.
 2. Le fichier s'ouvre dans votre navigateur par défaut (Chrome, Firefox, Edge, Safari, Brave...).
 
 ### Option 2 : Lancement via un serveur local (Optionnel)
@@ -117,7 +116,7 @@ Le contrat respecte la structure officielle adoptée pour la commercialisation d
 
 ## 🛠️ Personnalisation des Données Entreprise
 
-Si vous souhaitez modifier de manière permanente les coordonnées par défaut de la société venderesse, ouvrez [generator_v16.html](file:///home/yahya/EL-AABELLAOUI-C.A.D/generator_v16.html) et modifiez les attributs `value` dans la première section du formulaire :
+Si vous souhaitez modifier de manière permanente les coordonnées par défaut de la société venderesse, ouvrez [index.html](file:///home/yahya/EL-AABELLAOUI-C.A.D/index.html) et modifiez les attributs `value` dans la première section du formulaire :
 
 ```html
 <!-- Exemple de modification des valeurs par défaut -->
