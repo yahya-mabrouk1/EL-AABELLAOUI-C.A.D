@@ -34,7 +34,7 @@ Ce projet fournit une application web légère, zéro dépendance, fonctionnant 
 
 ### ✍️ Moteur de « Tafqeet » (التفقيط التلقائي بالدرهم والمتر المربع)
 * **Conversion automatique en toutes lettres arabes** : dès la saisie d'un chiffre dans le prix final, l'acompte ou la superficie, l'application génère instantanément la formulation juridique en toutes lettres :
-  * *Exemple financier* : `450 000` ➔ `أربعمائة وخمسون ألف درهم لا غير`.
+  * *Exemple financier* : `450 000` ➔ `أربعمائة وخمسون ألف درهم`.
   * *Exemple superficie* : `65.50` ➔ `خمسة وستون متراً مربعاً وخمسون سنتيمتراً مربعاً تقريباً`.
 * Boutons individuels `🔄 تفقيط` pour relancer ou écraser la conversion à la demande tout en laissant la liberté de modifier manuellement le texte.
 

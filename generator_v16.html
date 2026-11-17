@@ -596,7 +596,7 @@
                         <label for="i_totalAr">الثمن النهائي بالحروف</label>
                         <button type="button" class="btn-small" onclick="autoTafqeetTotal()" title="تحويل الثمن إلى حروف عربية">🔄 تفقيط</button>
                     </div>
-                    <input type="text" id="i_totalAr" placeholder="مثال: أربعمائة وخمسون ألف درهم لا غير" value="">
+                    <input type="text" id="i_totalAr" placeholder="مثال: أربعمائة وخمسون ألف درهم" value="">
                 </div>
                 <div class="form-group">
                     <div class="label-row">
@@ -609,7 +609,7 @@
                         <label for="i_depAr">المبلغ المودع بالحروف</label>
                         <button type="button" class="btn-small" onclick="autoTafqeetDep()" title="تحويل المبلغ المودع إلى حروف عربية">🔄 تفقيط</button>
                     </div>
-                    <input type="text" id="i_depAr" placeholder="مثال: خمسون ألف درهم لا غير" value="">
+                    <input type="text" id="i_depAr" placeholder="مثال: خمسون ألف درهم" value="">
                 </div>
                 <div class="form-group col-span-full">
                     <label for="i_transferDetails">تفاصيل الإيداع والتحويل (التواريخ، البنك، الخ...)</label>
@@ -627,7 +627,7 @@
                         <label for="i_balAr">المبلغ المتبقي بالحروف</label>
                         <button type="button" class="btn-small" onclick="autoTafqeetBal()" title="تحويل الباقي إلى حروف عربية">🔄 تفقيط</button>
                     </div>
-                    <input type="text" id="i_balAr" placeholder="مثال: أربعمائة ألف درهم لا غير" value="">
+                    <input type="text" id="i_balAr" placeholder="مثال: أربعمائة ألف درهم" value="">
                 </div>
                 <div class="form-group col-span-full">
                     <label for="i_paymentDetails">تفاصيل طريقة سداد المبلغ المتبقي والآجال</label>
@@ -834,7 +834,7 @@
             if (decPart > 0) {
                 str += ' و' + this.convert(decPart) + ' سنتیماً';
             }
-            return str + ' لا غير';
+            return str;
         },
 
         toArea(val) {
